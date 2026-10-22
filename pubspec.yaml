@@ -1,0 +1,23 @@
+name: avaliacao1
+description: App de Gestao de Documentos e Protocolos
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite: any
+  path_provider: ^2.1.4
+  intl: ^0.19.0
+  cupertino_icons: ^1.0.6
+  firebase_core: ^3.0.0
+  cloud_firestore: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true

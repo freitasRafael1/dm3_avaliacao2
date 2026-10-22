@@ -1,0 +1,33 @@
+try {
+    def pe = Class.forName("java.lang.ProcessEnvironment")
+    def field
+    try {
+        field = pe.getDeclaredField("theCaseInsensitiveEnvironment")
+    } catch (e) {
+        field = pe.getDeclaredField("theEnvironment")
+    }
+    field.setAccessible(true)
+    def map = field.get(null)
+    map.remove("ANDROID_PREFS_ROOT")
+} catch (e) {}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.layout.buildDirectory.set(rootProject.layout.buildDirectory.dir("../../build").get())
+
+subprojects {
+    project.layout.buildDirectory.set(rootProject.layout.buildDirectory.get().dir(project.name))
+}
+
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.layout.buildDirectory
+}
